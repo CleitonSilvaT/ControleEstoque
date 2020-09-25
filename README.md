@@ -39,6 +39,11 @@ pip install --upgrade pip
 
 ```
 pip install -r requirements.txt
+```
+
+* Gerar arquivo de configurações do projeto
+
+```
 python contrib/env_gen.py
 ```
 
@@ -75,7 +80,7 @@ Contém o projeto para uso local (em construção)
 Este projeto foi construído utilizando:
 
 * Python 3.8.5
-* Django 3.1
+* Django 3.1.1
 * Bootstrap 4
 * JQuery 3.5.1
 * Popper
