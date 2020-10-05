@@ -9,3 +9,10 @@ def lista_produto(request):
     context = {'lista_object':objects}
 
     return render(request, template_name, context)
+
+def detalhe_produto(request, pk):
+    template_name = 'detalhe_produto.html'
+    obj = Produto.objects.get(pk=pk)
+    context = {'object':obj}
+
+    return render(request, template_name, context)
