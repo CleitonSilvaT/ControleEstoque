@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'projeto.core',
     'projeto.produto',
     'projeto.estoque',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
