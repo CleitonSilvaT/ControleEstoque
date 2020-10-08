@@ -4,7 +4,7 @@
     <a href="{% url 'produto:lista_produto' %}">Voltar</a>
     <h1>{{ object }}
         <span class="pull-right">
-            <a href="">
+            <a href="{% url 'produto:edita_produto' object.pk %}">
                 <button type="button" class="btn btn-success">
                     <span class="fas fa-pencil-alt">                    
                     <span>
