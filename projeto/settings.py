@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'projeto.produto',
     'projeto.estoque',
     'widget_tweaks',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
