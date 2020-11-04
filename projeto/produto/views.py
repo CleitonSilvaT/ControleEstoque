@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView
+from django.http import JsonResponse
 from .models import Produto
 from .forms import ProdutoForm
 
@@ -24,7 +25,10 @@ def adiciona_produto(request):
 
     return render(request, template_name)
 
-
+def produto_json(request, pk):
+    produto = Produto.objects.filter(pk=pk)
+    data = [item.to_dict_json() for item in produto]
+    return JsonResponse({'data': data})
 
 class ProdutoCreate(CreateView):
     model = Produto
