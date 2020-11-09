@@ -2,7 +2,7 @@ from django.shortcuts import render, resolve_url
 from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
 from projeto.produto.models import Produto
-from .models import EstoqueEntrada, EstoqueSaida, EstoqueItens
+from .models import Estoque, EstoqueEntrada, EstoqueSaida, EstoqueItens
 from .forms import EstoqueForm, EstoqueItensForm
 
 # Create your views here.
@@ -32,11 +32,10 @@ def realizar_baixa_estoque(form):
     
     print('Estoque atuaizado com sucesso')
 
-
 def estoque_entrada_add(request):
     template_name = 'estoque_entrada_form.html'
 
-    estoque_form = EstoqueEntrada()
+    estoque_form = Estoque()
     item_estoque_formset = inlineformset_factory(
         EstoqueEntrada,
         EstoqueItens,
@@ -68,5 +67,12 @@ def estoque_saida_list(request):
     template_name = 'estoque_saida_list.html'
     objects = EstoqueSaida.objects.all()
     context = {'object_list': objects}
+
+    return render(request, template_name, context)
+
+def estoque_saida_detail(request, pk):
+    template_name='estoque_saida_detail.html'
+    obj = EstoqueSaida.objects.get(pk = pk)
+    context = {'object':obj}
 
     return render(request, template_name, context)
