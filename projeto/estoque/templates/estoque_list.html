@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Estoque Entrada
+    <h2>Estoque {{ titulo }}
         <span class="pull-right">
-            <a href="{% url 'estoque:estoque_entrada_add' %}">
+            <a href="{% url url_add %}">
                 <button type="button" class="btn btn-primary">
                     <i class="fas fa-plus"></i>Adicionar
                 </button>
