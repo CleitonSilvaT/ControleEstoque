@@ -3,11 +3,11 @@
 {% block content %}
     {% if object.movimento == 'e' %}
         <a href="{% url 'estoque:estoque_entrada_list' %}">Voltar</a>
+        <h1>Entrada: {{ object }}</h1>
     {% else %}
         <a href="{% url 'estoque:estoque_saida_list' %}">Voltar</a>
+        <h1>Saida: {{ object }}</h1>
     {% endif %}
-    
-    <h1>{{ object }}</h1>
 
     <div class="col-sm-6">
         <table class="table table-user-information">
