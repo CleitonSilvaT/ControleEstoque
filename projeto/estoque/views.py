@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, resolve_url
 from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
@@ -88,6 +89,7 @@ def estoque_add(request, template_name, movimento, url):
 
     return context
 
+@login_required
 def estoque_entrada_add(request):
     template_name = 'estoque_entrada_form.html'
     movimento = 'e'
@@ -131,6 +133,7 @@ def estoque_saida_detail(request, pk):
 
     return render(request, template_name, context)
 
+@login_required
 def estoque_saida_add(request):
     template_name = 'estoque_saida_form.html'
     movimento = 's'

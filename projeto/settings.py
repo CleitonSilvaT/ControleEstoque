@@ -136,3 +136,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS =  (
     STATIC_DIR,
 )
+
+STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
+
+LOGIN_URL = '/admin/login/'
+LOGOUT_REDIRECT_URL = 'core:index'
