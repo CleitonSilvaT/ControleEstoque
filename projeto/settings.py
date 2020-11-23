@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'projeto.estoque',
     'widget_tweaks',
     'bootstrapform',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
