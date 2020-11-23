@@ -2,6 +2,11 @@ $(document).ready(function() {
     // Inserir classe no primeiro item de produto
     $('#id_estoque-0-produto').addClass('clProduto');
     $('#id_estoque-0-quantidade').addClass('clQuantidade');
+    // Desabilita o primeiro campo Saldo
+    $('#id_estoque-0-saldo').prop('type', 'hidden')
+
+    // Criar span para mostrar saldo
+    $('label[for="id_estoque-0-saldo"]').append('<span id="id_estoque-0-saldo-span" class="lead" style="padding-left: 10px;"></span>')
 
     $('#add-item').click(function(ev) {
         ev.preventDefault();
@@ -10,22 +15,29 @@ $(document).ready(function() {
         var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
         $('div#estoque').append(compiledTmpl);
 
-        //update form count
+        // update form count
         $('#id_estoque-TOTAL_FORMS').attr('value', count + 1);
 
-        //some animation in scroll to view our new form
+        // Desabilita o campo Saldo
+        $('#id_estoque-' + (count) + '-saldo').prop('type', 'hidden')
+
+        // some animation in scroll to view our new form
         $('html, body').animate({
             scrollTop: $('#add-item').position().top - 200
         }, 800);
 
         $('#id_estoque-' + (count) + '-produto').addClass('clProduto');
         $('#id_estoque-' + (count) + '-quantidade').addClass('clQuantidade');
+
+        // Criar span para mostrar saldo
+        $('label[for="id_estoque-' + (count) + '-saldo"]').append('<span id="id_estoque-' + (count) + '-saldo-span" class="lead" style="padding-left: 10px;"></span>')
     });
 });
 
 let estoque
 let saldo
 let campo
+let campo2
 let quantidade
 
 $(document).on('change', '.clProduto', function() {
@@ -39,7 +51,7 @@ $(document).on('change', '.clProduto', function() {
         success: function(response) {
             estoque = response.data[0].estoque
             campo = self.attr('id').replace('produto', 'quantidade')
-                //Remocer o valor do campo quantidade
+                // Remover o valor do campo quantidade
             $('#' + campo).val('')
         },
         error: function(xhr) {
@@ -53,6 +65,15 @@ $(document).on('change', '.clQuantidade', function() {
     quantidade = $(this).val();
     saldo = Number(estoque) - Number(quantidade)
     campo = $(this).attr('id').replace('quantidade', 'saldo')
-        //Atribuir saldo
+    if (saldo < 0) {
+        alert('O saldo não pode ser negativo')
+        $('#' + campo).val('')
+        return
+    }
+
+    // Atribuir saldo
     $('#' + campo).val(saldo)
+    campo2 = $(this).attr('id').replace('quantidade', 'saldo-span')
+        // Atribuir saldo ao campo id_estoque-x-saldo-span
+    $('#' + campo2).text(saldo)
 });
