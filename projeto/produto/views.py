@@ -9,6 +9,10 @@ from .forms import ProdutoForm
 def lista_produto(request):
     template_name = 'lista_produto.html'
     objects = Produto.objects.all()
+    search = request.GET.get('search')
+    if search:
+        objects = objects.filter(produto__icontains = search)
+        
     context = {'lista_object':objects}
 
     return render(request, template_name, context)
