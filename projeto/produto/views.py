@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, ListView
 from django.http import JsonResponse
 from .models import Produto
 from .forms import ProdutoForm
@@ -13,9 +13,15 @@ def lista_produto(request):
     if search:
         objects = objects.filter(produto__icontains = search)
         
-    context = {'lista_object':objects}
+    context = {'object_list':objects}
 
     return render(request, template_name, context)
+
+class ProdutoList(ListView):
+    model = Produto
+    template_name = 'lista_produto.html'
+    paginate_by = 5
+
 
 def detalhe_produto(request, pk):
     template_name = 'detalhe_produto.html'

@@ -24,7 +24,7 @@
             </span>
         </h2>
 
-        {% if lista_object %}
+        {% if object_list %}
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for object in lista_object %}
+                    {% for object in object_list %}
                         <tr>
                             <td>
                                 {% if object.importado %}
@@ -62,4 +62,6 @@
             <p class="alert alert-warning"> Sem itens na lista</p>
         {% endif %}
     </div>
+
+    {% include 'includes/pagination.html' %}
 {% endblock content %}
